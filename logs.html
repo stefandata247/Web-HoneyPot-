@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honeypot Logs</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Honeypot Logs</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>IP Address</th>
+                <th>User-Agent</th>
+                <th>Method</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+                <tr>
+                    {% set log_parts = log.split(" - ") %}
+                    <td>{{ log_parts[0] }}</td>
+                    <td>{{ log_parts[1] }}</td>
+                    <td>{{ log_parts[2] }}</td>
+                    <td>{{ log_parts[3] }}</td>
+                    <td>{{ log_parts[4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Back to Home</a>
+</body>
+</html>
